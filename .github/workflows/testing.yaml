@@ -13,7 +13,7 @@ jobs:
           pip3 install virtualenv
           virtualenv venv
           source venv/bin/activate
-      - name: Instailling dependencies
+      - name: Installing dependencies
         run: |
           pip install dvc[gs]
           pip install -r requirements_test.txt
