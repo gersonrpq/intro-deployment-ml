@@ -1,0 +1,60 @@
+name: Updating model excercise
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Why to run this?
+        required: false
+        default: running Data Update
+jobs:
+  continuous-training:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Train model
+        env: 
+          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+        run: |
+           pip3 install virtualenv
+           virtualenv venv
+           source venv/bin/activate
+           pip install -r src/requirements.txt
+           export GOOGLE_APPLICATION_CREDENTIALS=$(python utilities/setter.py)
+           echo "Pulling Data"
+           
+           dvc pull finantials.csv.dvc -r dataset-track
+           dvc unprotect finantials.csv
+           
+           dvc pull movies.csv.dvc -r dataset-track
+           dvc unprotect movies.csv
+           
+           dvc pull opening_gross.csv.dvc  -r dataset-track
+           dvc unprotect opening_gross.csv
+           
+           echo "Updating Data"
+           # python script_that_updates_the_data.py
+           
+           echo "Pushing Data Changes"
+           dvc add finantials.csv -r dataset-track --to-remote
+           dvc push finantials.csv.dvc -r dataset-track
+           
+           dvc add movies.csv -r dataset-track --to-remote
+           dvc push movies.csv.dvc -r dataset-track
+           
+           dvc add opening_gross.csv  -r dataset-track --to-remote
+           dvc push opening_gross.csv.dvc  -r dataset-track
+          
+           echo "Data Update Finished"
+      - name: Commit .dvc file changes
+        run: |
+          git config --local user.email "ing.gersonp@gmail.com"
+          git config --local user.name "github-actions[bot]"
+          git add finantials.csv.dvc
+          git add movies.csv.dvc
+          git add opening_gross.csv.dvc
+          git commit -m "Updating Data serialization"
+      - uses: ad-m/github-push-action@master
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: ${{ github.ref }}
