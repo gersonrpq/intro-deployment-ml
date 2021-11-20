@@ -19,7 +19,7 @@ Having in mind that I wil make Continuous Integration, Deployment and Training, 
 
 ### _/notebooks_
 
-Notebooks where a compacted form of the results obtained in [applied machine learnig course of Platzi](https://platzi.com/clases/scikit/) can be seen
+Notebooks where a compacted form of the results obtained in [applied machine learning with python course of Platzi](https://platzi.com/clases/scikit/) can be seen
 
 ### _/src_
 
