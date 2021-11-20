@@ -1,4 +1,4 @@
-# This the repository of the Introduction to the deployment of Machine Learning Models Course At Platzi
+# This is the repository of the Introduction to the deployment of Machine Learning Models Course At Platzi
 
 [Here is the link of the course](https://platzi.com/clases/despliegue-ml/)
 
