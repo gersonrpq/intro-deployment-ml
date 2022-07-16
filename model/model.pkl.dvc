@@ -1,4 +1,4 @@
 outs:
-- size: 357283
+- size: 327234
   path: model.pkl
-  etag: 6e291612656ef3619aa7ba2d0399d614
+  etag: 5e86bd498a57d3db081c13e18239fd8f
