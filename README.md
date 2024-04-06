@@ -1,6 +1,6 @@
 # This is the repository of the Introduction to the deployment of Machine Learning Models Course At Platzi
 
-[Here is the link of the course](https://platzi.com/clases/despliegue-ml/)
+[Here is the link of the course](https://platzi.com/cursos/ml-ops/)
 
 All code in the repository is intended to replicate the behavour of machine learning models lifecycle in production.
 
